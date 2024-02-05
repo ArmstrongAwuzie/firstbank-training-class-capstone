@@ -16,7 +16,7 @@ def main(value):
 
     response = client.chat.completions.create(
         model=azure_oai_model,
-        temperature=0.7,
+        temperature=0.3,
         max_tokens=120,
         messages=[
             {"role": "system", "content": "You are a helpful assistant."},
