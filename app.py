@@ -93,16 +93,22 @@ app.layout = html.Div(
             },
         ),
         # Added the missing loading indicator element
-        html.Div(id="loading-indicator", children="", style={"text-align": "center"}),
-        html.Div(id="image-generation-output", children="", style={"text-align": "center"}),
-        html.Img(id="generated-image", style={"display": "block", "margin": "auto"}),
+        dcc.Loading(
+            id="loading-output",
+            type="default",
+            children=[
+                html.Div(id='Loading-indicator',children='', style={'font-weight':'bold','margin-bottom':'10px'}),
+                html.Div(id="image-generation-output", children="Generated image will appear here.", style={"text-align": "center"}),
+                html.Img(id="generated-image", style={"display": "block", "margin": "auto"}),
+            ]
+        )
     ],
 )
 
 # Callback for generating and displaying image
 @callback(
     Output("generated-image", "src"),
-    Output("loading-indicator", "children"),
+    Output("Loading-indicator", "children"),
     Output("image-generation-output", "children"),
     Input("submit-button", "n_clicks"),
     State("basic-prompt-input", "value"),
