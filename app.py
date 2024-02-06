@@ -63,7 +63,7 @@ def generate_prompt(value):
     refined_prompt = response.choices[0].message.content
     return refined_prompt
 app.layout = html.Div(
-    style={"background-image": 'url("/assets/bgimage.jpg")', 'background-size':'cover',  'background-repeat':'norepeat', "min-height":"100vh"},
+    style={"background-image": 'url("/assets/bgimage2.jpeg")', 'background-size':'cover',  'background-repeat':'norepeat', "min-height":"100vh"},
     children=[html.Div(style={
            "height": "auto", "display": "flex", 
            "justify-content": "center", "align-items": "center"},  # Center content vertically and horizontally
