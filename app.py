@@ -63,8 +63,12 @@ def generate_prompt(value):
     refined_prompt = response.choices[0].message.content
     return refined_prompt
 app.layout = html.Div(
-    style={"backgroundColor": "#90EE90", "height": "auto", "display": "flex", "justify-content": "center", "align-items": "center"},  # Center content vertically and horizontally
+    style={"background-image": 'url("/assets/bgimage.jpg")', 'background-size':'cover',  'background-repeat':'norepeat', "min-height":"100vh"},
+    children=[html.Div(style={
+           "height": "auto", "display": "flex", 
+           "justify-content": "center", "align-items": "center"},  # Center content vertically and horizontally
     children=[
+        
         html.Div(
             style={"width": "50%"},  # Limit width of content
             children=[
@@ -82,10 +86,10 @@ app.layout = html.Div(
                             size="100",
                             style={"margin-left": "20px", 
                                    "margin-right": "20px",
-                                   "height": "40px",
+                                   "height": "30px",
                                    "padding": "10px",  
                                     "border": "2px solid #4CAF50",  
-                                    "border-radius": "5px",  
+                                    "border-radius": "40px",  
                                     "font-size": "16px", 
                                    },
                         ),
@@ -101,6 +105,7 @@ app.layout = html.Div(
                                 "cursor": "pointer",
                                 "margin-left": "1px",
                                 "height": "50px",
+                                "border-radius": "40px",
                             },
                         ),
                     ],
@@ -118,7 +123,7 @@ app.layout = html.Div(
                 )
             ],
         ),
-    ],
+    ],),]
 )
 
 # Callback for generating and displaying image
