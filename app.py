@@ -63,45 +63,61 @@ def generate_prompt(value):
     refined_prompt = response.choices[0].message.content
     return refined_prompt
 app.layout = html.Div(
-    style={"backgroundColor": "#90EE90"},  # Set background color
+    style={"backgroundColor": "#90EE90", "height": "auto", "display": "flex", "justify-content": "center", "align-items": "center"},  # Center content vertically and horizontally
     children=[
-        html.H1(
-            children="Almighty GroupB Image Generation App",
-            style={"textAlign": "center", "margin-bottom": "20px"},
-        ),
         html.Div(
-            style={"display": "flex", "justify-content": "center", "align-items": "center"}
-        ),
-        dcc.Input(
-            id="basic-prompt-input",
-            type="text",
-            placeholder="Type your basic prompt here",
-            size="100",
-            style={"margin-left": "20px", "margin-right": "20px"},
-        ),
-        html.Button(
-            "Submit",
-            id="submit-button",
-            n_clicks=0,
-            style={
-                "backgroundColor": "#4CAF50",  # Set button color
-                "color": "white",
-                "padding": "10px 20px",
-                "border": "none",
-                "cursor": "pointer",
-                "margin-left": "20px",
-            },
-        ),
-        # Added the missing loading indicator element
-        dcc.Loading(
-            id="loading-output",
-            type="default",
+            style={"width": "50%"},  # Limit width of content
             children=[
-                html.Div(id='Loading-indicator',children='', style={'font-weight':'bold','margin-bottom':'10px'}),
-                html.Div(id="image-generation-output", children="Generated image will appear here.", style={"text-align": "center"}),
-                html.Img(id="generated-image", style={"display": "block", "margin": "auto"}),
-            ]
-        )
+                html.H1(
+                    children="Almighty GroupB Image Generation App",
+                    style={"textAlign": "center", "margin-bottom": "20px"},
+                ),
+                html.Div(
+                    style={"display": "flex", "justify-content": "center", "align-items": "center"},
+                    children=[
+                        dcc.Input(
+                            id="basic-prompt-input",
+                            type="text",
+                            placeholder="Type your basic prompt here",
+                            size="100",
+                            style={"margin-left": "20px", 
+                                   "margin-right": "20px",
+                                   "height": "40px",
+                                   "padding": "10px",  
+                                    "border": "2px solid #4CAF50",  
+                                    "border-radius": "5px",  
+                                    "font-size": "16px", 
+                                   },
+                        ),
+                        html.Button(
+                            "Submit",
+                            id="submit-button",
+                            n_clicks=0,
+                            style={
+                                "backgroundColor": "#4CAF50",  # Set button color
+                                "color": "white",
+                                "padding": "10px 20px",
+                                "border": "2px solid #4CAF50",
+                                "cursor": "pointer",
+                                "margin-left": "1px",
+                                "height": "50px",
+                            },
+                        ),
+                    ],
+                ),
+                # Added the missing loading indicator element
+                dcc.Loading(
+                    id="loading-output",
+                    type="default",
+                    children=[
+                        html.Div(id='Loading-indicator', children='', style={'font-weight': 'bold', 'margin-bottom': '10px'}),
+                        html.Div(id="image-generation-output", children="Generated image will appear here.",
+                                 style={"text-align": "center"}),
+                        html.Img(id="generated-image", style={"display": "block", "margin": "auto"}),
+                    ]
+                )
+            ],
+        ),
     ],
 )
 
@@ -131,7 +147,7 @@ def generate_image_and_update_ui(n_clicks, value):
 
     # Update output
     if image_url:
-        return image_url, None, f"Refined Prompt: {refined_prompt}"  # Image generated
+        return image_url, None, refined_prompt  # Image generated
     else:
         return None, None, "Error generating image. Please try again."  # Error
 
